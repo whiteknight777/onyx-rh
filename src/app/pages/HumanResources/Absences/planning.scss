@@ -1,0 +1,119 @@
+$primary: #673ab7;
+
+
+
+.fc-daygrid-event {
+    padding: 0.3rem 0.5rem;
+}
+#calendar-quick-actions-tooltip{
+    position: relative;
+    bottom: 8px !important;
+}
+.fc-direction-ltr .fc-daygrid-event.fc-event-end, .fc-direction-rtl .fc-daygrid-event.fc-event-start {
+    margin: 1px 5px;
+    border: 1px solid #EBEDF3;
+    -webkit-box-shadow: 0px 0px 9px 0px rgb(0 0 0 / 6%);
+    box-shadow: 0px 0px 15px 11px rgb(0 0 0 / 6%)
+}
+
+.fc{
+    .fc-header-toolbar.fc-toolbar {
+        .fc-toolbar-chunk{
+            display: flex;
+            flex-direction: row-reverse;
+            .fc-button-group{
+                margin-left: 0;
+                position: relative;
+                display: -webkit-inline-box;
+                display: -ms-inline-flexbox;
+                display: inline-flex;
+                vertical-align: middle;
+            }
+            .fc-button {
+                color: #B5B5C3;
+                background: transparent;
+                border: 1px solid #EBEDF3;
+                text-shadow: none !important;
+                -webkit-box-shadow: none !important;
+                box-shadow: none !important;
+                outline: none !important;
+                height: 2.4rem;
+                padding: 0 1.25rem;
+                font-size: .9rem;
+            }
+            .fc-button:hover {
+                border: 0;
+                background: #F3F6F9;
+                border: 1px solid #EBEDF3;
+                color: #B5B5C3;
+            }
+            .fc-today-button{
+                margin-left: 0.75em;
+            }
+        }
+        .fc-toolbar-title {
+            font-size: 1.15em;
+            margin: 0;
+            text-transform: uppercase
+        }
+        .fc-button.fc-button-active{
+            background: $primary;
+            color: #FFFFFF;
+            border: 1px solid $primary;
+            -webkit-box-shadow: none;
+            box-shadow: none;
+            text-shadow: none;
+        }
+        .fc-button.fc-button-active:hover{
+            background: $primary;
+            color: #FFFFFF;
+        }
+    }
+    .fc-col-header-cell-cushion {
+        display: inline-block;
+        padding: 2px 4px;
+        color: #B5B5C3;
+    }
+    .fc-event .fc-content, .fc-event-dot .fc-content {
+        padding: 0.12rem 0.55rem 0.12rem 2rem;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .fc-event .fc-title, .fc-event-dot .fc-title {
+        font-size: 0.9rem;
+        font-weight: 400;
+    }
+    .fc-event .fc-content .circle, .fc-event-dot .fc-content .circle {
+        display: block;
+        content: " ";
+        position: absolute;
+        height: 10px;
+        width: 10px;
+        border-radius: 50%;
+        top: 0.4rem;
+        left: 0.75rem;
+    }
+    .fc-toolbar .fc-button:focus, .fc-toolbar .fc-button:active,  .fc-toolbar .fc-button.fc-button-active {
+        background: $primary;
+        color: #FFFFFF;
+        border: 1px solid $primary;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+        text-shadow: none;
+    }
+    .circle.red{
+        background-color: red;
+    }
+    .circle.primary{
+        background-color: $primary;
+    }
+    .circle.secondary{
+        background-color: purple;
+    }
+    .circle.green{
+        background-color: green;
+    }
+    .circle.white{
+        background-color: white;
+    }
+}

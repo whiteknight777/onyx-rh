@@ -1,0 +1,72 @@
+
+GET http://localhost:3006/auth/
+
+###
+
+GET http://localhost:3006/auth/me 
+
+###
+
+GET http://localhost:3006/employees/staff
+
+###
+
+POST http://localhost:3006/auth/login 
+content-type: application/json
+
+{
+    "email": "admin@demo.com",
+    "password": "demo"
+}
+
+###
+
+POST http://localhost:3006/auth/registration
+Content-Type: application/json
+
+{
+    "username": "admin",
+    "password": "demo",
+    "email": "admin@demo.com",
+    "roles": "1",
+    "pic": "/media/users/300_21.jpg",
+    "fullname": "Desire ARRA",
+    "firstname": "Desire",
+    "lastname": "ARRA",
+    "occupation": "CEO",
+    "companyName": "Rocket Engine",
+    "phone": "456669067890",
+    "language": "fr",
+    "timeZone": "International Date Line West",
+    "website": "https://desirearra.com"
+}
+### GET ALL FOLDERS
+POST http://localhost:3006/documents/list
+Content-Type: application/json
+
+{
+    "slug": "rocket-engine"
+}
+
+
+### EXPLORE FOLDER
+POST http://localhost:3006/documents/find
+Content-Type: application/json
+
+{
+    "slug": "rocket-engine"
+}
+
+
+### GO BACK PARENT FOLDER
+POST http://localhost:3006/documents/go-parent
+Content-Type: application/json
+
+{
+    "slug": "rocket-engine"
+}
+
+
+###
+
+
