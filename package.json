@@ -29,7 +29,7 @@
       "IE 11"
     ]
   },
-  "proxy": "http://localhost:3006",
+  "proxy": "https://onyx-rh-api.herokuapp.com/",
   "dependencies": {
     "@date-io/date-fns": "2.6.1",
     "@formatjs/intl-pluralrules": "1.3.5",

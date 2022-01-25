@@ -1,19 +1,24 @@
 {
-  "name": "api",
+  "name": "onyx-rh-api",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "server:start": "nodemon server.js"
+    "start": "node index.js"
   },
-  "author": "",
-  "license": "ISC",
+  "engines": {
+    "node": "15.8.0",
+    "npm": "7.5.1"
+  },
+  "author": "desirearra",
+  "license": "MIT",
   "proxy": "http://localhost:3005",
   "dependencies": {
     "bcrypt": "^5.0.1",
     "body-parser": "^1.19.0",
     "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
+    "ejs": "^3.1.5",
     "express": "^4.17.1",
     "express-session": "^1.17.2",
     "http-proxy-middleware": "^2.0.0",
