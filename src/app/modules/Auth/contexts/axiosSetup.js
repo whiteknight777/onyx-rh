@@ -1,17 +1,16 @@
-import axios from 'axios';
+import axios from "axios";
 
-const baseURL = process.env.REACT_APP_API_URL
+const baseURL = process.env.REACT_APP_API_URL;
 
 const Axios = axios.create({
-    baseURL,
-    responseType: 'json',
-    timeout: 4000,
-    withCredentials: true,
-    headers: {
-      'Content-Type': 'application/json'
-    }
-})
-
+  baseURL,
+  responseType: "json",
+  timeout: 300000,
+  withCredentials: true,
+  headers: {
+    "Content-Type": "application/json",
+  },
+});
 
 /* 
   The below is required if you want your API to return 
@@ -25,8 +24,8 @@ const Axios = axios.create({
 
 */
 Axios.interceptors.response.use(
-  response => (response), 
-  error => (Promise.reject(error))
-)
+  (response) => response,
+  (error) => Promise.reject(error)
+);
 
 export default Axios;
