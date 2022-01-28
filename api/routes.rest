@@ -7,6 +7,10 @@ GET http://localhost:3006/auth/me
 
 ###
 
+GET http://onyx-rh-api.herokuapp.com/auth/me
+
+###
+
 GET http://localhost:3006/employees/staff
 
 ###
