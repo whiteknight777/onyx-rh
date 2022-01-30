@@ -2,7 +2,7 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import BaseTable from '../../../Components/AdvancedTables/BaseTable';
 import NameFormated from '../../../Components/NameFormated/NameFormated';
-import { API_URL } from '../../../modules/Auth/contexts/authCrud';
+import Axios from '../../../modules/Auth/contexts/axiosSetup';
 
 function Teams() {
     const [state, setState] = React.useState({
@@ -106,12 +106,12 @@ function Teams() {
     };
 
     React.useEffect(() => {
-        fetch(`${API_URL}/employees/teams`)
-            .then(response => response.json())
-            .then(json => {
+        Axios.get('employees/teams')
+            .then(response => {
+                const { data } = response;
                 setState(prev => ({
                     ...prev,
-                    data: prepareData(json)
+                    data: prepareData(data)
                 }));
             });
     // eslint-disable-next-line

@@ -1,27 +1,24 @@
-import {ActionTypes} from './userProvider'
-
-const initialAuthState = {
-    user: undefined,
-    isAuthorized: false,
-}
+import { ActionTypes } from './userProvider';
 
 export const UserReducer = (state, action) => {
     const user = action.payload?.user;
     switch (action.type) {
         // LOGIN ACTION
         case ActionTypes.login:
-            return { user: undefined, isAuthorized: true };
+            sessionStorage.setItem('accessToken', action.accessToken);
+            return { user: undefined, isAuthorized: false, accessToken: action.accessToken };
         // REGISTER ACTION
-        case ActionTypes.register: 
+        case ActionTypes.register:
             return { user: undefined };
         // LOGOUT ACTION
-        case ActionTypes.logout: 
-            return initialAuthState;
+        case ActionTypes.logout:
+            sessionStorage.removeItem('accessToken');
+            return { user: undefined, isAuthorized: false };
         // LOAD USER ACTION
-        case ActionTypes.userLoaded: 
+        case ActionTypes.userLoaded:
             return { ...state, user, isAuthorized: true };
         // SET USER ACTION
-        case ActionTypes.setUser: 
+        case ActionTypes.setUser:
             return { ...state, user };
         // DEFAULT ACTION
         default:

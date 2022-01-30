@@ -10,15 +10,22 @@ function AuthInit(props) {
     const { userStore, dispatch } = useContext(UserContext);
     const { isAuthorized } = userStore;
     const [showSplashScreen, setShowSplashScreen] = useState(true);
+    const accessToken = sessionStorage.getItem('accessToken');
 
     // We should request user by authToken before rendering the application
     useEffect(() => {
         const requestUser = async () => {
             try {
-                const { data } = await getUserByToken();
-                dispatch({ type: ActionTypes.userLoaded, payload: { user: data.user } });
+                getUserByToken(accessToken).then(res => {
+                    const { data } = res;
+                    dispatch({
+                        type: ActionTypes.userLoaded,
+                        payload: { user: data.user }
+                    });
+                });
             } catch (error) {
                 dispatch({ type: ActionTypes.logout });
+                console.error(error);
             } finally {
                 setShowSplashScreen(false);
             }
@@ -27,10 +34,9 @@ function AuthInit(props) {
                 didRequest.current = true;
             };
         };
-
         requestUser();
-    // eslint-disable-next-line
-  }, [isAuthorized]);
+        // eslint-disable-next-line
+    }, [isAuthorized, accessToken, dispatch]);
 
     return showSplashScreen ? <LayoutSplashScreen /> : <>{props.children}</>;
 }

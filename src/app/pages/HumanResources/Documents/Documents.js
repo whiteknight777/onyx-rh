@@ -8,6 +8,7 @@ import Authorization from './Authorization/Authorization';
 import TypeDoc from './TypeDoc/TypeDoc';
 import { MixedWidget14 } from '../../../../_metronic/_partials/widgets/mixed/MixedWidget14';
 import Explorer from './Explorer';
+import Axios from '../../../modules/Auth/contexts/axiosSetup';
 
 function Documents() {
     const [state, setState] = React.useState({
@@ -115,7 +116,7 @@ function Documents() {
         path: ['root'],
         open: false
     });
-    const history = useHistory();
+    // const history = useHistory();
 
     const goParent = (slug) => {
         const data = JSON.stringify({
@@ -127,25 +128,14 @@ function Documents() {
                 data: []
             }));
         }
-        const request = new Request(`${API_URL}/documents/go-parent`, {
-            method: 'POST',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: data
+        Axios.post('documents/go-parent', data).then(response => {
+            const { data } = response;
+            setState(prev => ({
+                ...prev,
+                data: prepareData(data),
+                path: prev.path.filter(e => e !== slug)
+            }));
         });
-        fetch(request)
-            .then(response => response.json())
-            .then(json => {
-                setTimeout(() => {
-                    setState(prev => ({
-                        ...prev,
-                        data: prepareData(json),
-                        path: prev.path.filter(e => e !== slug)
-                    }));
-                }, 100);
-            });
     };
 
     const openFolder = (slug) => {
@@ -158,25 +148,15 @@ function Documents() {
                 data: []
             }));
         }
-        const request = new Request(`${API_URL}/documents/find`, {
-            method: 'POST',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: data
+
+        Axios.post('documents/find', data).then(response => {
+            const { data } = response;
+            setState(prev => ({
+                ...prev,
+                data: prepareData(data),
+                path: prev.path.concat(slug)
+            }));
         });
-        fetch(request)
-            .then(response => response.json())
-            .then(json => {
-                setTimeout(() => {
-                    setState(prev => ({
-                        ...prev,
-                        data: prepareData(json),
-                        path: prev.path.concat(slug)
-                    }));
-                }, 100);
-            });
     };
 
     const prepareData = (json) => {
@@ -276,25 +256,13 @@ function Documents() {
                 data: []
             }));
         }
-        const request = new Request(`${API_URL}/documents/list`,
-            {
-                method: 'POST',
-                headers: {
-                    Accept: 'application/json',
-                    'Content-Type': 'application/json'
-                },
-                body: data
-            });
-        fetch(request)
-            .then(response => response.json())
-            .then(json => {
-                setTimeout(() => {
-                    setState(prev => ({
-                        ...prev,
-                        data: prepareData(json)
-                    }));
-                    console.log(state.data.length);
-                }, 50);
+        Axios.post('documents/list', data)
+            .then(response => {
+                const { data } = response;
+                setState(prev => ({
+                    ...prev,
+                    data: prepareData(data)
+                }));
             });
     };
 

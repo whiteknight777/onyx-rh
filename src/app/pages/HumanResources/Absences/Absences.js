@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import BaseTable from '../../../Components/AdvancedTables/BaseTable';
 import DrawerBox from '../../../Components/Drawer/DrawerBox';
 import RequestStatus from './RequestStatus/RequestStatus';
-import { API_URL } from '../../../modules/Auth/contexts/authCrud';
+import Axios from '../../../modules/Auth/contexts/axiosSetup';
 
 function Absences() {
     const [state, setState] = React.useState({
@@ -135,12 +135,12 @@ function Absences() {
         return result;
     };
 
-    const getData = () => fetch(`${API_URL}/employees/absences`)
-        .then(response => response.json())
-        .then(json => {
+    const getData = () => Axios.get('employees/absences')
+        .then(response => {
+            const { data } = response;
             setState(prev => ({
                 ...prev,
-                data: prepareData(json)
+                data: prepareData(data)
             }));
         });
 
