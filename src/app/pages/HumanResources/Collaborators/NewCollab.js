@@ -7,7 +7,7 @@ import { TiLocationOutline, TiMail } from 'react-icons/ti';
 import Styles from './Styles-jss';
 import Informations from './Informations/Informations';
 
-function NewStaff(props) {
+function NewCollab(props) {
     const classes = Styles();
     const history = useHistory();
     return (
@@ -41,4 +41,4 @@ function NewStaff(props) {
     );
 }
 
-export default NewStaff;
+export default NewCollab;

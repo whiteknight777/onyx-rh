@@ -1,13 +1,13 @@
 import React from 'react';
-import SVG from 'react-inlinesvg';
+// import SVG from 'react-inlinesvg';
 import { Grid } from '@material-ui/core';
 import { ActivitiesWidget } from '../../Components/ActivitiesWidget';
 import { toAbsoluteUrl } from '../../../_metronic/_helpers';
-import { ListsWidget11 } from '../../../_metronic/_partials/widgets/lists/ListsWidget11';
+// import { ListsWidget11 } from '../../../_metronic/_partials/widgets/lists/ListsWidget11';
 import { StatsWidget11 } from '../../../_metronic/_partials/widgets/stats/StatsWidget11';
 import { StatsWidget12 } from '../../../_metronic/_partials/widgets/stats/StatsWidget12';
 
-function TeamsOverviews() {
+function Overviews() {
     return (
         <>
             {/* begin::Dashboard */}
@@ -173,4 +173,4 @@ function TeamsOverviews() {
     );
 }
 
-export default TeamsOverviews;
+export default Overviews;

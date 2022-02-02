@@ -10,7 +10,7 @@ import { QuickUserToggler } from '../extras/QuiclUserToggler';
 import { useHtmlClassService } from '../../_core/MetronicLayout';
 import { toAbsoluteUrl } from '../../../_helpers';
 import DrawerBox from '../../../../app/Components/Drawer/DrawerBox';
-import Activities from '../../../../app/pages/HumanResources/Staff/Activities/Activities';
+import Activities from '../../../../app/pages/HumanResources/Collaborators/Activities/Activities';
 
 const useStyles = makeStyles((theme) => ({
     grow: {

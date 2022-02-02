@@ -9,7 +9,7 @@ import Informations from './Informations/Informations';
 import OrganizationChart from './OrganizationChart/OrganizationChart';
 import Settings from './Settings/Settings';
 
-const ShowTeam = (props) => {
+const ShowDepartment = (props) => {
     const { userStore } = React.useContext(UserContext);
     const { user } = userStore;
 
@@ -245,4 +245,4 @@ const ShowTeam = (props) => {
     );
 };
 
-export default ShowTeam;
+export default ShowDepartment;

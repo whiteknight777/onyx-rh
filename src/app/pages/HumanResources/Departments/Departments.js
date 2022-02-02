@@ -4,7 +4,7 @@ import BaseTable from '../../../Components/AdvancedTables/BaseTable';
 import NameFormated from '../../../Components/NameFormated/NameFormated';
 import Axios from '../../../modules/Auth/contexts/axiosSetup';
 
-function Staff() {
+function Departments() {
     const [state, setState] = React.useState({
         headRows: [
             {
@@ -15,7 +15,7 @@ function Staff() {
                 showColumn: false
             },
             {
-                id: 'icon',
+                id: 'color',
                 numeric: false,
                 disablePadding: false,
                 label: '#',
@@ -25,7 +25,14 @@ function Staff() {
                 id: 'name',
                 numeric: false,
                 disablePadding: false,
-                label: 'Nom & Prenom(s)',
+                label: 'Nom',
+                showColumn: true
+            },
+            {
+                id: 'manager',
+                numeric: false,
+                disablePadding: false,
+                label: 'Responsable',
                 showColumn: true
             },
             {
@@ -36,31 +43,10 @@ function Staff() {
                 showColumn: true
             },
             {
-                id: 'phone',
+                id: 'address',
                 numeric: false,
                 disablePadding: false,
-                label: 'Téléphone',
-                showColumn: true
-            },
-            {
-                id: 'zipcode',
-                numeric: false,
-                disablePadding: false,
-                label: 'Code postal',
-                showColumn: false
-            },
-            {
-                id: 'city',
-                numeric: false,
-                disablePadding: false,
-                label: 'Ville',
-                showColumn: true
-            },
-            {
-                id: 'street',
-                numeric: false,
-                disablePadding: false,
-                label: 'Rue',
+                label: 'Adresse',
                 showColumn: false
             },
             {
@@ -75,7 +61,7 @@ function Staff() {
                 numeric: false,
                 disablePadding: false,
                 label: 'Dernière modification',
-                showColumn: false
+                showColumn: true
             },
             {
                 id: 'actions',
@@ -98,13 +84,11 @@ function Staff() {
         json.forEach(el => {
             result.push({
                 id: el.id,
-                icon: <NameFormated name={el.name} />,
+                color: <NameFormated name={el.name} color={el.color} />,
                 name: el.name,
-                email: el.email,
-                phone: el.phone,
-                zipcode: el.address.zipcode,
-                street: el.address.street,
-                city: el.address.city,
+                manager: el.manager.fullname,
+                email: el.manager.email,
+                address: el.address,
                 createdAt: el.createdAt,
                 updatedAt: el.updatedAt,
                 actions: [
@@ -112,7 +96,7 @@ function Staff() {
                         type: 'show',
                         label: 'Consulter informations',
                         handleClick: (row, index) => {
-                            goto('/collaborateurs/details');
+                            goto('/unite-organisationnelle/details');
                         }
                     }
                 ]
@@ -122,7 +106,7 @@ function Staff() {
     };
 
     React.useEffect(() => {
-        Axios.get('employees/staff')
+        Axios.get('departments')
             .then(response => {
                 const { data } = response;
                 setState(prev => ({
@@ -131,11 +115,11 @@ function Staff() {
                 }));
             });
     // eslint-disable-next-line
-    }, [history]);
+    }, []);
 
     const onClickAddAction = () => {
         console.log('fired add action');
-        history.push('/collaborateurs/nouveau');
+        history.push('/unite-organisationnelle/nouveau');
     };
 
     const { data, headRows } = state;
@@ -148,8 +132,8 @@ function Staff() {
                   addAction={() => {
                       onClickAddAction();
                   }}
-                  title="Liste des collaborateurs"
-                  subTitle="Consultez les informations de vos collaborateurs"
+                  title="Liste des unités organisationnelles"
+                  subTitle="Consultez vos différentes unités"
                   headRows={headRows}
                 />
             ) : false}
@@ -157,4 +141,4 @@ function Staff() {
     );
 }
 
-export default Staff;
+export default Departments;

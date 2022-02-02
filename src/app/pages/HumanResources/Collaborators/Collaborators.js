@@ -4,7 +4,7 @@ import BaseTable from '../../../Components/AdvancedTables/BaseTable';
 import NameFormated from '../../../Components/NameFormated/NameFormated';
 import Axios from '../../../modules/Auth/contexts/axiosSetup';
 
-function Teams() {
+function Collaborators() {
     const [state, setState] = React.useState({
         headRows: [
             {
@@ -15,7 +15,7 @@ function Teams() {
                 showColumn: false
             },
             {
-                id: 'color',
+                id: 'icon',
                 numeric: false,
                 disablePadding: false,
                 label: '#',
@@ -25,14 +25,7 @@ function Teams() {
                 id: 'name',
                 numeric: false,
                 disablePadding: false,
-                label: 'Nom',
-                showColumn: true
-            },
-            {
-                id: 'manager',
-                numeric: false,
-                disablePadding: false,
-                label: 'Responsable',
+                label: 'Nom & Prenom(s)',
                 showColumn: true
             },
             {
@@ -43,10 +36,31 @@ function Teams() {
                 showColumn: true
             },
             {
-                id: 'address',
+                id: 'phone',
                 numeric: false,
                 disablePadding: false,
-                label: 'Adresse',
+                label: 'Téléphone',
+                showColumn: true
+            },
+            {
+                id: 'zipcode',
+                numeric: false,
+                disablePadding: false,
+                label: 'Code postal',
+                showColumn: false
+            },
+            {
+                id: 'city',
+                numeric: false,
+                disablePadding: false,
+                label: 'Ville',
+                showColumn: true
+            },
+            {
+                id: 'street',
+                numeric: false,
+                disablePadding: false,
+                label: 'Rue',
                 showColumn: false
             },
             {
@@ -61,7 +75,7 @@ function Teams() {
                 numeric: false,
                 disablePadding: false,
                 label: 'Dernière modification',
-                showColumn: true
+                showColumn: false
             },
             {
                 id: 'actions',
@@ -84,11 +98,13 @@ function Teams() {
         json.forEach(el => {
             result.push({
                 id: el.id,
-                color: <NameFormated name={el.name} color={el.color} />,
+                icon: <NameFormated name={el.name} />,
                 name: el.name,
-                manager: el.manager.fullname,
-                email: el.manager.email,
-                address: el.address,
+                email: el.email,
+                phone: el.phone,
+                zipcode: el.address.zipcode,
+                street: el.address.street,
+                city: el.address.city,
                 createdAt: el.createdAt,
                 updatedAt: el.updatedAt,
                 actions: [
@@ -96,7 +112,7 @@ function Teams() {
                         type: 'show',
                         label: 'Consulter informations',
                         handleClick: (row, index) => {
-                            goto('/unite-organisationnelle/details');
+                            goto('/collaborateurs/details');
                         }
                     }
                 ]
@@ -106,7 +122,7 @@ function Teams() {
     };
 
     React.useEffect(() => {
-        Axios.get('employees/teams')
+        Axios.get('collaborators')
             .then(response => {
                 const { data } = response;
                 setState(prev => ({
@@ -115,11 +131,11 @@ function Teams() {
                 }));
             });
     // eslint-disable-next-line
-    }, []);
+    }, [history]);
 
     const onClickAddAction = () => {
         console.log('fired add action');
-        history.push('/unite-organisationnelle/nouveau');
+        history.push('/collaborateurs/nouveau');
     };
 
     const { data, headRows } = state;
@@ -132,8 +148,8 @@ function Teams() {
                   addAction={() => {
                       onClickAddAction();
                   }}
-                  title="Liste des unités organisationnelles"
-                  subTitle="Consultez vos différentes unités"
+                  title="Liste des collaborateurs"
+                  subTitle="Consultez les informations de vos collaborateurs"
                   headRows={headRows}
                 />
             ) : false}
@@ -141,4 +157,4 @@ function Teams() {
     );
 }
 
-export default Teams;
+export default Collaborators;

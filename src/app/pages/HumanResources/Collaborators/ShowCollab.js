@@ -9,7 +9,7 @@ import Informations from './Informations/Informations';
 import Settings from './Settings/Settings';
 import Activities from './Activities/Activities';
 
-const ShowStaff = (props) => {
+const ShowCollab = (props) => {
     const { userStore } = React.useContext(UserContext);
     const { user } = userStore;
 
@@ -181,4 +181,4 @@ const ShowStaff = (props) => {
     );
 };
 
-export default ShowStaff;
+export default ShowCollab;

@@ -135,7 +135,7 @@ function Absences() {
         return result;
     };
 
-    const getData = () => Axios.get('employees/absences')
+    const getData = () => Axios.get('absences')
         .then(response => {
             const { data } = response;
             setState(prev => ({

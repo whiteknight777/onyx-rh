@@ -6,7 +6,7 @@ import {
 import Styles from './Styles-jss';
 import Informations from './Informations/Informations';
 
-function NewTeam(props) {
+function NewDepartment(props) {
     const classes = Styles();
     const history = useHistory();
     return (
@@ -40,4 +40,4 @@ function NewTeam(props) {
     );
 }
 
-export default NewTeam;
+export default NewDepartment;

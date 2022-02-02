@@ -115,4 +115,6 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
 
-#REACT_APP_API_URL=https://onyx-rh-api.herokuapp.com
+### API URL
+
+[ONYX-API](https://onyx-rh-api.herokuapp.com)
